@@ -1,0 +1,33 @@
+literals = [
+    "ZERO",
+    "ONE",
+    "TWO",
+    "THREE",
+    "FOUR",
+    "FIVE",
+    "SIX",
+    "SEVEN",
+    "EIGHT",
+    "NINE",
+    "PLUS",
+    "EQUALS",
+    "LOWER_X",
+    "LOWER_Y",
+    "HORIZONTAL_LINE",
+    "SQRT",
+    "LEFT_PARENTHESIS",
+    "RIGHT_PARENTHESIS",
+    "LOWER_A",
+    "LOWER_C",
+    "LOWER_E",
+    "LOWER_G",
+    "LOWER_I",
+    "LOWER_L",
+    "LOWER_N",
+    "LOWER_O",
+    "LOWER_S",
+    "LOWER_T",
+]
+
+def get_literal_by_label(label):
+    return literals[label]

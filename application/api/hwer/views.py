@@ -4,6 +4,9 @@ from rest_framework.response import Response
 
 from subprocess import check_output
 
+from .models import Sample
+from .label_literals import get_literal_by_label
+
 
 class RecognizeEquation(APIView):
     """
@@ -25,3 +28,23 @@ class RecognizeEquation(APIView):
             shell=True)
 
         return Response(response, status=status.HTTP_200_OK)
+
+
+class Sample(APIView):
+    """
+    Implements the API call for saving an equation on the database
+    """
+
+    def post(self, request, format=None):
+        # Get the data send by the request.
+        inkml_data = request.data.get('inkml_data', '')
+        label = request.data.get('label', '')
+
+        # If any of the data are void, do nothing.
+        if inkml_data == '' or label == '':
+            return Response("empty data", status=status.HTTP_400_BAD_REQUEST)
+
+        Sample.objects.create(xml=inkml_data, label=label,
+                              label_literal=get_literal_by_label(label))
+
+        return Response("successfully saved sample", status=status.HTTP_200_OK)
