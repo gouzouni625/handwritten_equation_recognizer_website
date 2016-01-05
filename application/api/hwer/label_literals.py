@@ -30,4 +30,4 @@ literals = [
 ]
 
 def get_literal_by_label(label):
-    return literals[label]
+    return literals[int(label)]
