@@ -23,8 +23,8 @@ class RecognizeEquation(APIView):
             "-cp /var/www/production/handwritten_equation_recognizer-0.9.jar:"
             "/var/www/production/neural_network-0.9.jar "
             "org.hwer.executables.HandWrittenEquationRecognizer "
-            "/var/www/production/main-4096-100-100-100-18.bin " +
-            inkml_data],
+            "\"/var/www/production/main-4096-100-100-100-18.bin\" " +
+            "\"" + inkml_data + "\""],
             shell=True)
 
         return Response(response, status=status.HTTP_200_OK)
