@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from subprocess import check_output
 
-from .models import Sample
+import models
 from .label_literals import get_literal_by_label
 
 
@@ -44,7 +44,7 @@ class Sample(APIView):
         if inkml_data == '' or label == '':
             return Response("empty data", status=status.HTTP_400_BAD_REQUEST)
 
-        Sample.objects.create(xml=inkml_data, label=label,
-                              label_literal=get_literal_by_label(label))
+        models.Sample.objects.create(xml=inkml_data, label=label,
+                                     label_literal=get_literal_by_label(label))
 
         return Response("successfully saved sample", status=status.HTTP_200_OK)
